@@ -3,29 +3,28 @@ package boj.p11689;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        long n = Long.parseLong(br.readLine());
-        long result = n;
-        for(long p = 2; p <= Math.sqrt(n); p++)
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(br.readLine());
+        TreeSet<String> set = new TreeSet<>((a, b) -> {
+            if(a.length() != b.length()) return a.length() - b.length();
+            return a.compareTo(b);
+        });
+
+        while(N-- > 0)
         {
-            if(n % p == 0)
-            {
-                result = result - result / p;
-                while(n % p == 0)
-                {
-                    n /= p;
-                }
-            }
+            set.add(br.readLine());
         }
 
-        if(n > 1)
+        for(String s : set)
         {
-            result = result - result / n;
+            sb.append(s).append('\n');
         }
 
-        System.out.println(result);
+        System.out.println(sb);
     }
 }
