@@ -3,6 +3,8 @@ package boj.p2747;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.util.StringTokenizer;
+import java.util.Arrays;
 
 public class Main {
     static int[] D;
@@ -17,14 +19,10 @@ public class Main {
 
         D[0] = 0;
         D[1] = 1;
-        fibo(n);
+        for(int i = 2; i <= n; i++)
+        {
+            D[i] = D[i - 1] + D[i - 2];
+        }
         System.out.println(D[n]);
-    }
-
-    static int fibo(int n)
-    {
-        if(D[n] != -1) return D[n];
-
-        return D[n] = fibo(n - 2) + fibo(n - 1);
     }
 }
